@@ -13,6 +13,7 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const prayersRouter = require("./routes/prayers");
 const paymentRoute = require("./routes/payment");
+const slideImages = require("./routes/slideImages");
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/api/prayers", prayersRouter);
 app.use("/api/charge", paymentRoute);
+app.use("/api/slideimages", slideImages);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
