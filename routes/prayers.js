@@ -1,13 +1,37 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
 let prayers = [
-  { id: 1, prayerName: "FAJR", time: "06:00 AM" },
-  { id: 2, prayerName: "DHUHR", time: "12:00 PM" },
-  { id: 3, prayerName: "ASR", time: "04:00 PM" },
-  { id: 4, prayerName: "MAGHRIB", time: "06:00 PM" },
-  { id: 5, prayerName: "ISHA", time: "07:30 PM" },
-  { id: 6, prayerName: "JUMU'AH", time: "01:00 PM" }
+  {
+    id: 1,
+    prayerName: "FAJR",
+    time: "06:00"
+  },
+  {
+    id: 2,
+    prayerName: "DHUHR",
+    time: "12:00"
+  },
+  {
+    id: 3,
+    prayerName: "ASR",
+    time: "16:00"
+  },
+  {
+    id: 4,
+    prayerName: "MAGHRIB",
+    time: "18:30"
+  },
+  {
+    id: 5,
+    prayerName: "ISHA",
+    time: "19:30"
+  },
+  {
+    id: 6,
+    prayerName: "JUMU'AH",
+    time: "13:00"
+  }
 ];
 
 /* GET prayers listing. */
@@ -16,7 +40,6 @@ router.get("/", function(req, res, next) {
 });
 
 router.post("/", function(req, res, next) {
-  console.log("TCL: req", req.body);
   const newPrayers = req.body;
   prayers = [...newPrayers];
   res.json(prayers).status(200);

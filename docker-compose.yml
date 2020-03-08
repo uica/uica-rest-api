@@ -1,0 +1,11 @@
+version: "3.1"
+
+services:
+  uicadb:
+    image: postgres
+    environment:
+      POSTGRES_USER: localadmin
+      POSTGRES_PASSWORD: localpassword
+      POSTGRES_DB: uica
+    ports:
+      - "5432:8989"
