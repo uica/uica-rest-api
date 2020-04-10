@@ -3,11 +3,13 @@ const router = express.Router();
 const knex = require("../knex");
 /* GET prayers listing. */
 router.get("/", async (req, res, next) => {
-  const prayers = await knex("prayer_time").catch((error) => {
-    res
-      .json({ success: false, message: "Something went wrong!", error })
-      .status(500);
-  });
+  const prayers = await knex("prayer_time")
+    .orderBy("id")
+    .catch((error) => {
+      res
+        .json({ success: false, message: "Something went wrong!", error })
+        .status(500);
+    });
   res.json({ success: true, data: prayers }).status(200);
 });
 
@@ -24,8 +26,14 @@ router.post("/", async (req, res, next) => {
       });
   });
 
+  const data = await knex("prayer_time").orderBy("id");
+
   res
-    .json({ success: true, message: "Prayers times updated successfully!" })
+    .json({
+      success: true,
+      message: "Prayers times updated successfully!",
+      data,
+    })
     .status(200);
 });
 
