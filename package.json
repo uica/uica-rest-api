@@ -13,7 +13,9 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
+    "knex": "^0.20.13",
     "morgan": "~1.9.1",
+    "pg": "^8.0.2",
     "stripe": "^8.20.0"
   },
   "devDependencies": {

@@ -1,11 +1,13 @@
-version: "3.1"
+version: "3.7"
 
 services:
   uicadb:
     image: postgres
     environment:
-      POSTGRES_USER: localadmin
-      POSTGRES_PASSWORD: localpassword
-      POSTGRES_DB: uica
+      POSTGRES_USER: uica
+      POSTGRES_PASSWORD: uica
+      POSTGRES_DB: uica-app
     ports:
-      - "5432:8989"
+      - "5555:5432"
+    volumes:
+      - ./pgdb/data:/var/lib/postgresql/data
