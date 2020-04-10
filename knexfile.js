@@ -1,8 +1,7 @@
-require("dotenv").config();
 module.exports = {
   development: {
     client: "pg",
-    connection: process.env.DATABASE_URL,
+    connection: "postgresql://uica:uica@localhost:5555/uica-app",
     searchPath: ["knex", "public"],
     migrations: {
       directory: __dirname + "/database/migrations",
@@ -12,6 +11,7 @@ module.exports = {
     },
   },
   production: {
+    client: "pg",
     connection: process.env.DATABASE_URL,
     searchPath: ["knex", "public"],
     migrations: {
