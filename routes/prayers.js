@@ -6,7 +6,7 @@ router.get("/", async (req, res, next) => {
   const prayers = await knex("prayer_time")
     .orderBy("id")
     .catch((error) => {
-      res
+      return res
         .json({ success: false, message: "Something went wrong!", error })
         .status(500);
     });
@@ -20,7 +20,7 @@ router.post("/", async (req, res, next) => {
       .where({ id: prayer.id })
       .update({ name: prayer.name, time: prayer.time, iqama: prayer.iqama })
       .catch((error) => {
-        res
+        return res
           .json({ success: false, message: "Something went wrong!", error })
           .status(500);
       });
