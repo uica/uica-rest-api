@@ -5,21 +5,27 @@ const makePayment = async (req, res) => {
   const { paid, status, receipt_url } = await stripe.customers
     .create({
       email: billingInfo.email,
-      source: token.id
+      source: token.id,
     })
-    .then(customer =>
-      stripe.charges.create({
-        amount: total * 100,
-        description,
-        currency: "usd",
-        customer: customer.id
-      })
-    );
+    .then(
+      async (customer) =>
+        await stripe.charges
+          .create({
+            amount: total * 100,
+            description,
+            currency: "usd",
+            customer: customer.id,
+          })
+          .catch((error) => {
+            return res.json({ success: false, error }).status(400);
+          })
+    )
+    .catch((error) => {
+      return res.json({ success: false, error }).status(400);
+    });
 
   if (paid && status === "succeeded") {
-    res.send({ success: true, receipt_url }).status(200);
-  } else {
-    res.send({ success: false }).status(400);
+    return res.json({ success: true, receipt_url }).status(200);
   }
 };
 
