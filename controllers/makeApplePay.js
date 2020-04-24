@@ -1,11 +1,11 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-const makePayment = async (req, res) => {
-  const { token, total, description, billingInfo } = req.body;
+const makeApplePay = async (req, res) => {
+  const { token, total, description } = req.body;
+
   const { paid, status, receipt_url } = await stripe.customers
     .create({
-      email: billingInfo.email,
-      source: token.id,
+      source: token,
     })
     .then(
       async (customer) =>
@@ -29,4 +29,4 @@ const makePayment = async (req, res) => {
   }
 };
 
-module.exports = makePayment;
+module.exports = makeApplePay;
