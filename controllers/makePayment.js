@@ -4,7 +4,10 @@ const makePayment = async (req, res) => {
   const { token, total, description, billingInfo } = req.body;
   const { paid, status, receipt_url } = await stripe.customers
     .create({
+      description,
       email: billingInfo.email,
+      name: `${billingInfo.firstName} ${billingInfo.lastName}`,
+      phone: billingInfo.phoneNumber,
       source: token.id,
     })
     .then(
